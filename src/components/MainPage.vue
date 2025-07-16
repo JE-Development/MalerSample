@@ -32,13 +32,29 @@
 .product-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 50px;
+  gap: 20px;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
 
 .us-background{
   background: #f7f8f9;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.contact-background{
+  background: #111827;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.about-half-width{
+  width: 50%;
 }
 
 .tri-width{
@@ -58,7 +74,7 @@
 .contact-circle{
   width: 50px;
   height: 50px;
-  background: rgba(255, 0, 0, 0.2);
+  background: rgb(37, 98, 233);
 }
 
 .hide-pizza{
@@ -98,6 +114,19 @@
   font-weight: bold;
 }
 
+.black-tag{
+  width: fit-content;
+  border-radius: 100px;
+  padding: 3px;
+  padding-left: 6px;
+  padding-right: 6px;
+  background: #000000;
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+
 .rating-card{
   width: fit-content;
   height: fit-content;
@@ -112,16 +141,24 @@
   border-radius: 200px;
 }
 
-.decent-prim-background{
-  background: #d9e8fc;
-}
-
 .decent-sec-background{
   background: #dafae5;
 }
 
 .sec-color{
   color: #16a249;
+}
+
+.contact-opening{
+  padding: 20px;
+  background: #1f2937;
+}
+
+@media (max-width: 1450px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
 }
 
 @media (max-width: 1000px) {
@@ -147,17 +184,12 @@
     align-items: center;
   }
 
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-
   .mobile-column{
     flex-direction: column;
   }
 
 }
-@media (max-width: 720px) {
+@media (max-width: 1060px) {
   .contact-column{
     flex-direction: column;
   }
@@ -205,27 +237,29 @@
   <Nav class="fade-bottom-before on-top" :class="fadeNav ? 'fade-bottom-after' : ''"/>
 
   <div class="header-background header-outer center" id="home">
-    <div class="header-inner main-content-width space-between center-vertical">
-      <div class="center half-width fade-right-before" :class="fadeHeader ? 'fade-right-after' : ''">
+    <div class="header-inner main-content-width space-between center-vertical mobile-column">
+      <div class="center half-width fade-before" :class="fadeHeader ? 'fade-after' : ''">
         <div>
-          <div class="main-tag">Professionelle Malerarbeiten seit 1995</div>
+          <div class="mobile-center-horizontal">
+            <div class="main-tag">Professionelle Malerarbeiten seit 1995</div>
+          </div>
           <h1 class="reset-margin main-headline mobile-center-text">Ihr Zuhause in <span class="prim-color">neuen Farben</span></h1>
-          <p class="default-textsize decent-color fade-top-before mobile-center-text" :class="fadeSubHeader ? 'fade-top-after' : ''">Wir verwandeln Ihre Räume mit hochwertigen Malerarbeiten, modernen Techniken und jahrzehntelanger Erfahrung.</p>
-          <div class="mobile-center-horizontal fade-top-before mobile-button-column" :class="fadeSubButtons ? 'fade-top-after' : ''">
+          <p class="default-textsize decent-color fade-before mobile-center-text" :class="fadeSubHeader ? 'fade-after' : ''">Wir verwandeln Ihre Räume mit hochwertigen Malerarbeiten, modernen Techniken und jahrzehntelanger Erfahrung.</p>
+          <div class="mobile-center-horizontal fade-before mobile-button-column" :class="fadeSubButtons ? 'fade-after' : ''">
             <div class="center-horizontal">
-              <UIButton title="Kostenlos beraten lassen" @click="onMenu"/>
+              <UIButton title="Kostenlos beraten lassen" @click="onContact"/>
             </div>
             <div class="button-space"></div>
             <div class="center-horizontal">
-              <UIButton title="Unsere Arbeiten ansehen" sec @click="onReservation"/>
+              <UIButton title="Unsere Arbeiten ansehen" sec @click="onProjects"/>
             </div>
           </div>
         </div>
       </div>
-      <div class="center half-width hide-pizza relative max-height">
+      <div class="center half-width relative max-height">
         <div class="absolute center max-width max-height">
           <div class="inner-img max-height center">
-            <img src="../assets/maler-main.jpg" class="max-width fade-left-before round-corner shadow" :class="fadePizza ? 'fade-left-after' : ''">
+            <img src="../assets/maler-main.jpg" class="max-width fade-before round-corner shadow" :class="fadePizza ? 'fade-after' : ''">
           </div>
         </div>
         <div class="absolute max-width bottom" style="aspect-ratio: 3/2">
@@ -238,7 +272,7 @@
             <div style="width: 10px"></div>
             <div>
               <p class="reset-margin bold">25+ Jahre</p>
-              <p class="reset-margin bold decent-color" style="font-size: 13px">Erfahrung</p>
+              <p class="reset-margin decent-color" style="font-size: 13px">Erfahrung</p>
             </div>
           </div>
         </div>
@@ -252,7 +286,7 @@
             <div style="width: 10px"></div>
             <div>
               <p class="reset-margin bold">500+</p>
-              <p class="reset-margin bold decent-color" style="font-size: 13px">Zufriedene Kunden</p>
+              <p class="reset-margin decent-color" style="font-size: 13px">Zufriedene Kunden</p>
             </div>
           </div>
         </div>
@@ -267,8 +301,11 @@
   </div>
 
   <div class="center-horizontal" ref="menu">
-    <div class="main-content-width center-horizontal">
+    <div class="leistung-content-width center-horizontal">
       <div>
+        <div class="center-horizontal">
+          <div class="black-tag">Unsere Leistungen</div>
+        </div>
         <div class="center-horizontal">
           <h2 class="huge-headline center-text">Professionelle Malerarbeiten für jeden Bedarf</h2>
         </div>
@@ -282,14 +319,11 @@
   <div style="height: 50px"></div>
 
   <div class="center-horizontal">
-    <div class="main-content-width center-horizontal">
-      <div class="product-grid">
-        <ProductCard title="Margherita Classica" sub="Frische Tomaten, Mozzarella, Basilikum, Olivenöl" price="12,90€" img="pizza-product-1"/>
-        <ProductCard title="Quattro Stagioni" sub="Tomaten, Mozzarella, Schinken, Pilze, Artischocken, Oliven" price="13,90€" img="pizza-product-2"/>
-        <ProductCard title="Diavola Piccante" sub="Tomaten, Mozzarella, scharfe Salami, Peperoni, Chili" price="14,90€" img="pizza-product-3"/>
-        <ProductCard title="Prosciutto e Funghi" sub="Tomaten, Mozzarella, Prosciutto, frische Champignons" price="13,90€" img="pizza-product-4"/>
-        <ProductCard title="Vegetariana Deluxe" sub="Tomaten, Mozzarella, Zucchini, Auberginen, Paprika, Rucola" price="12,90€" img="pizza-product-5"/>
-        <ProductCard title="Quattro Formaggi" sub="Mozzarella, Gorgonzola, Parmesan, Ricotta, Walnüsse" price="11,90€" img="pizza-product-6"/>
+    <div class="leistung-content-width center-horizontal">
+      <div class="product-grid max-width">
+        <LeistungCard title="Innenraumgestaltung" sub="Wände, Decken und Türen in perfekter Qualität" :list="['Wandgestaltung', 'Deckenanstrich', 'Türen & Fenster']"><Icon size="35" class="prim-color"><Home24Regular/></Icon></LeistungCard>
+        <LeistungCard title="Fassadenarbeiten" sub="Schutz und Verschönerung Ihrer Außenwände" :list="['Fassadenanstrich', 'Putzarbeiten', 'Wärmedämmung']"><Icon size="35" class="prim-color"><Building24Regular/></Icon></LeistungCard>
+        <LeistungCard title="Spezialarbeiten" sub="Kreative Techniken für besondere Ansprüche" :list="['Spachteltechnik', 'Lasurtechnik', 'Dekorputz']"><Icon size="35" class="prim-color"><Color20Regular/></Icon></LeistungCard>
       </div>
     </div>
   </div>
@@ -300,29 +334,99 @@
     <div class="header-inner main-content-width space-between center-vertical mobile-column">
       <div class="center half-width">
         <div>
-          <div class="main-tag">Über MalerPro</div>
+          <div class="mobile-center-horizontal">
+            <div class="black-tag">Über MalerPro</div>
+          </div>
           <h1 class="huge-headline mobile-center-text">Qualität und Erfahrung seit über 25 Jahren</h1>
           <p class="default-textsize reset-margin mobile-center-text decent-color">Als familiengeführtes Unternehmen stehen wir für höchste Qualität, Zuverlässigkeit und persönlichen Service. Unser erfahrenes Team verwirklicht Ihre Wünsche mit modernsten Techniken und hochwertigen Materialien.</p>
           <div style="height: 20px"></div>
-          
+          <div class="flex">
+            <div class="center-vertical about-half-width">
+              <div class="round-icon decent-prim-background center">
+                <Icon size="25" class="prim-color">
+                  <Clock20Regular/>
+                </Icon>
+              </div>
+              <div style="width: 10px"></div>
+              <div>
+                <p class="reset-margin bold">Pünktlich</p>
+                <div style="height: 5px"></div>
+                <p class="reset-margin decent-color" style="font-size: 13px">Termintreue Ausführung</p>
+              </div>
+            </div>
+            <div class="center-vertical about-half-width">
+              <div class="round-icon decent-prim-background center">
+                <Icon size="25" class="prim-color">
+                  <Clock20Regular/>
+                </Icon>
+              </div>
+              <div style="width: 10px"></div>
+              <div>
+                <p class="reset-margin bold">Pünktlich</p>
+                <div style="height: 5px"></div>
+                <p class="reset-margin decent-color" style="font-size: 13px">Termintreue Ausführung</p>
+              </div>
+            </div>
+          </div>
+          <div style="height: 30px"></div>
+          <div class="flex">
+            <div class="center-vertical about-half-width">
+              <div class="round-icon decent-prim-background center">
+                <Icon size="25" class="prim-color">
+                  <Clock20Regular/>
+                </Icon>
+              </div>
+              <div style="width: 10px"></div>
+              <div>
+                <p class="reset-margin bold">Pünktlich</p>
+                <div style="height: 5px"></div>
+                <p class="reset-margin decent-color" style="font-size: 13px">Termintreue Ausführung</p>
+              </div>
+            </div>
+            <div class="center-vertical about-half-width">
+              <div class="round-icon decent-prim-background center">
+                <Icon size="25" class="prim-color">
+                  <Clock20Regular/>
+                </Icon>
+              </div>
+              <div style="width: 10px"></div>
+              <div>
+                <p class="reset-margin bold">Pünktlich</p>
+                <div style="height: 5px"></div>
+                <p class="reset-margin decent-color" style="font-size: 13px">Termintreue Ausführung</p>
+              </div>
+            </div>
+          </div>
+          <div style="height: 30px"></div>
+          <div class="mobile-center-horizontal">
+            <UIButton title="Mehr über uns erfahren"/>
+          </div>
         </div>
       </div>
       <div class="center half-width">
-        <img src="../assets/pizzeria.jpg" class="max-width round-corner max-height contain">
+        <div class="about-grid">
+          <img src="../assets/bild2.webp" class="max-width round-corner max-height contain">
+          <div class="max-width max-height center"><img src="../assets/bild1.webp" class="max-width round-corner contain"></div>
+          <div class="max-width max-height center"><img src="../assets/bild4.webp" class="max-width round-corner contain"></div>
+          <img src="../assets/bild3.webp" class="max-width round-corner contain">
+        </div>
       </div>
     </div>
   </div>
 
-  <div style="height: 50px" id="contact"></div>
+  <div style="height: 50px" id="projects"></div>
 
-  <div class="center-horizontal" ref="contact">
+  <div class="center-horizontal" ref="projects">
     <div class="main-content-width center-horizontal">
       <div>
         <div class="center-horizontal">
-          <h1 class="huge-headline center-text">Kontakt & <span class="prim-color">Reservierung</span></h1>
+          <div class="black-tag">Unsere Projekte</div>
         </div>
         <div class="center-horizontal">
-          <p class="decent-color default-textsize reset-margin center-text">Rufen Sie uns an, oder schreiben Sie eine Nachricht.</p>
+          <h2 class="huge-headline center-text">Einige unserer schönsten Arbeiten</h2>
+        </div>
+        <div class="center-horizontal">
+          <p class="decent-color default-textsize reset-margin center-text">Lassen Sie sich von unseren realisierten Projekten inspirieren</p>
         </div>
       </div>
     </div>
@@ -331,121 +435,159 @@
   <div style="height: 50px"></div>
 
   <div class="center-horizontal">
-    <div class="main-content-width center-horizontal contact-column">
-      <div class="center-horizontal">
-        <div class="address-card shadow round-corner flex" style="flex-direction: column;">
-          <h2 class="reset-margin">Kontaktinformationen</h2>
-          <div style="height: 20px"></div>
-          <div class="center-vertical flex-1">
+    <div class="main-content-width center-horizontal">
+      <div class="product-grid max-width">
+        <ProjectCard title="Moderne Wohnzimmergestaltung" city="München" tag="Innenraumgestaltung" img="thumb1.jpg" path="/project1"/>
+        <ProjectCard title="Fassadensanierung Einfamilienhaus" city="Hamburg" tag="Fassadenarbeiten" img="thumb2.jpg" path="/project2"/>
+        <ProjectCard title="Büroräume Neugestaltung" city="Berlin" tag="Gewerblich" img="thumb3.jpg" path="/project3"/>
+        <ProjectCard title="Altbau Renovierung" city="Köln" tag="Innenraumgestaltung" img="thumb4.jpeg" path="/project4"/>
+        <ProjectCard title="Moderne Küche" city="Frankfurt" tag="Spezialarbeiten" img="thumb5.webp" path="/project5"/>
+        <ProjectCard title="Penthouse Gestaltung" city="Stuttgart" tag="Luxus" img="thumb6.webp" path="/project6"/>
+      </div>
+    </div>
+  </div>
+
+  <div style="height: 50px" id="contact"></div>
+
+  <div class="max-width contact-background center-horizontal">
+    <div class="header-inner main-content-width center-horizontal">
+      <div>
+        <div class="center-horizontal" ref="contact">
+          <div class="main-content-width center-horizontal">
             <div>
-              <div class="center-vertical">
-                <div class="full-round prim-color-background contact-circle center">
-                  <Icon size="35" class="prim-color">
-                    <Location20Regular/>
-                  </Icon>
-                </div>
-                <div style="width: 20px"></div>
-                <div>
-                  <p class="reset-margin bold">Adresse</p>
-                  <p class="decent-color reset-margin">Musterstraße 123, 12345 Berlin</p>
-                </div>
+              <div class="center-horizontal">
+                <h1 class="huge-headline center-text white">Lassen Sie uns Ihr Projekt besprechen</h1>
               </div>
-              <div style="height: 20px"></div>
-              <div class="center-vertical">
-                <div class="full-round prim-color-background contact-circle center">
-                  <Icon size="35" class="prim-color">
-                    <Call28Regular/>
-                  </Icon>
-                </div>
-                <div style="width: 20px"></div>
-                <div>
-                  <p class="reset-margin bold">Telefon</p>
-                  <p class="decent-color reset-margin">+49 30 12345678</p>
-                </div>
-              </div>
-              <div style="height: 20px"></div>
-              <div class="center-vertical">
-                <div class="full-round prim-color-background contact-circle center">
-                  <Icon size="35" class="prim-color">
-                    <Mail20Regular/>
-                  </Icon>
-                </div>
-                <div style="width: 20px"></div>
-                <div>
-                  <p class="reset-margin bold">E-Mail</p>
-                  <p class="decent-color reset-margin">info@bellavista-pizza.de</p>
-                </div>
-              </div>
-              <div style="height: 20px"></div>
-              <div class="center-vertical">
-                <div class="full-round prim-color-background contact-circle center">
-                  <Icon size="35" class="prim-color">
-                    <Clock20Regular/>
-                  </Icon>
-                </div>
-                <div style="width: 20px"></div>
-                <div>
-                  <p class="reset-margin bold">Öffnungszeiten</p>
-                  <p class="decent-color reset-margin">Mo-So: 11:00 - 23:00 Uhr</p>
-                </div>
+              <div class="center-horizontal">
+                <p class="default-textsize reset-margin center-text decent-white">Rufen Sie uns an, oder schreiben Sie eine Nachricht.</p>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="contact-space"></div>
-      <div class="center-horizontal">
-        <div class="message-card shadow round-corner">
-          <h2 class="reset-margin">Nachricht senden</h2>
-          <div style="height: 20px"></div>
-          <div class="center">
-            <div class="flex-1">
-              <div>
-                <p class="reset-margin">Name</p>
-              </div>
-              <div class="center-horizontal max-width">
-                <div class="input-layer">
-                  <input class="input"/>
+
+        <div style="height: 50px"></div>
+
+        <div class="center-horizontal">
+          <div class="main-content-width center-horizontal contact-column">
+            <div class="center-horizontal">
+              <div class="address-card round-corner">
+                <h2 class="reset-margin white">Kontaktinformationen</h2>
+                <div style="height: 20px"></div>
+                <div>
+                  <div class="center-vertical">
+                    <div class="full-round prim-color-background contact-circle center">
+                      <Icon size="35" class="white">
+                        <Call20Regular/>
+                      </Icon>
+                    </div>
+                    <div style="width: 20px"></div>
+                    <div>
+                      <p class="reset-margin bold white">Adresse</p>
+                      <p class="reset-margin decent-white">Musterstraße 123, 12345 Berlin</p>
+                    </div>
+                  </div>
+                  <div style="height: 20px"></div>
+                  <div class="center-vertical">
+                    <div class="full-round prim-color-background contact-circle center">
+                      <Icon size="35" class="white">
+                        <Mail20Regular/>
+                      </Icon>
+                    </div>
+                    <div style="width: 20px"></div>
+                    <div>
+                      <p class="reset-margin bold white">Telefon</p>
+                      <p class="reset-margin decent-white">+49 30 12345678</p>
+                    </div>
+                  </div>
+                  <div style="height: 20px"></div>
+                  <div class="center-vertical">
+                    <div class="full-round prim-color-background contact-circle center">
+                      <Icon size="35" class="white">
+                        <Location20Regular/>
+                      </Icon>
+                    </div>
+                    <div style="width: 20px"></div>
+                    <div>
+                      <p class="reset-margin bold white">E-Mail</p>
+                      <p class="reset-margin decent-white">info@bellavista-pizza.de</p>
+                    </div>
+                  </div>
+                </div>
+                <div style="height: 20px"></div>
+                <div class="contact-opening round-corner">
+                  <p class="bold white reset-margin">Öffnungszeiten</p>
+                  <div style="height: 15px"></div>
+                  <p class="decent-white reset-margin">Montag - Freitag: 7:00 - 17:00</p>
+                  <div style="height: 10px"></div>
+                  <p class="decent-white reset-margin">Samstag: 8:00 - 14:00</p>
+                  <div style="height: 10px"></div>
+                  <p class="decent-white reset-margin">Sonntag: Geschlossen</p>
                 </div>
               </div>
             </div>
-            <div class="flex-1">
-              <div>
-                <p class="reset-margin">E-Mail</p>
-              </div>
-              <div class="center-horizontal max-width">
-                <div class="input-layer">
-                  <input class="input"/>
+            <div class="contact-space"></div>
+            <div class="center-horizontal">
+              <div class="message-card shadow round-corner">
+                <h2 class="reset-margin white">Nachricht senden</h2>
+                <div style="height: 20px"></div>
+                <div class="center">
+                  <div class="flex-1">
+                    <div>
+                      <p class="reset-margin white">Vorname</p>
+                    </div>
+                    <div class="center-horizontal max-width">
+                      <div class="input-layer">
+                        <input class="input white"/>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex-1">
+                    <div>
+                      <p class="reset-margin white">Nachname</p>
+                    </div>
+                    <div class="center-horizontal max-width">
+                      <div class="input-layer">
+                        <input class="input white"/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div style="height: 10px"></div>
+                <div>
+                  <p class="reset-margin white">E-Mail</p>
+                </div>
+                <div class="center-horizontal max-width">
+                  <div class="input-layer">
+                    <input class="input white">
+                  </div>
+                </div>
+                <div style="height: 10px"></div>
+                <div>
+                  <p class="reset-margin white">Telefon</p>
+                </div>
+                <div class="center-horizontal max-width">
+                  <div class="input-layer">
+                    <input class="input white">
+                  </div>
+                </div>
+                <div style="height: 10px"></div>
+                <div>
+                  <p class="reset-margin white">Ihr Anliegen</p>
+                </div>
+                <div class="center-horizontal max-width">
+                  <textarea class="textarea white" style="min-height: 100px; font-size: 15px"/>
+                </div>
+                <div style="height: 10px"></div>
+                <div class="center-horizontal">
+                  <UIButton title="Absenden"/>
                 </div>
               </div>
             </div>
-          </div>
-          <div style="height: 10px"></div>
-          <div>
-            <p class="reset-margin">Anliegen</p>
-          </div>
-          <div class="center-horizontal max-width">
-            <div class="input-layer">
-              <input class="input" placeholder="Reservierung / Frage">
-            </div>
-          </div>
-          <div style="height: 10px"></div>
-          <div>
-            <p class="reset-margin">Ihr Anliegen</p>
-          </div>
-          <div class="center-horizontal max-width">
-            <textarea class="textarea" style="min-height: 100px; font-size: 15px"/>
-          </div>
-          <div style="height: 10px"></div>
-          <div class="center-horizontal">
-            <UIButton title="Absenden"/>
           </div>
         </div>
       </div>
     </div>
   </div>
-
-  <div style="height: 100px"></div>
 
   <Footer/>
 
@@ -457,16 +599,17 @@
 import Nav from "@/components/views/Nav.vue"
 import UIButton from "@/components/views/UIButton.vue"
 import {Icon} from "@vicons/utils"
-import {Shield24Regular, Star28Regular} from "@vicons/fluent"
+import {Shield24Regular, Star28Regular, Home24Regular, Building24Regular, Color20Regular, Clock20Regular, Call20Regular, ChevronDoubleDown20Regular, Mail20Regular, Location20Regular} from "@vicons/fluent"
 import LeistungCard from "@/components/views/LeistungCard.vue";
 import Footer from "@/components/views/Footer.vue"
+import ProjectCard from "@/components/views/ProjectCard.vue"
 
 export default {
   name: "MainPage",
   components: {
-    Footer,
-    ProductCard: LeistungCard,
-    Icon, UIButton, Nav, Shield24Regular, Star28Regular},
+    ProjectCard,
+    Footer, LeistungCard,
+    Icon, UIButton, Nav, Shield24Regular, Star28Regular, Home24Regular, Building24Regular, Color20Regular, Clock20Regular, Call20Regular, ChevronDoubleDown20Regular, Mail20Regular, Location20Regular},
   data() {
     return {
       fadePizza: false,
@@ -505,17 +648,17 @@ export default {
 
   methods: {
 
-    onMenu(){
+    onContact(){
       const yOffset = -100;
-      const element = this.$refs.menu
+      const element = this.$refs.contact
       const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
 
       window.scrollTo({top: y, behavior: 'smooth'});
     },
 
-    onReservation(){
+    onProjects(){
       const yOffset = -100;
-      const element = this.$refs.contact
+      const element = this.$refs.projects
       const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
 
       window.scrollTo({top: y, behavior: 'smooth'});

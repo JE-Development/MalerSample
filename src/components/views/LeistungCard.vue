@@ -2,8 +2,9 @@
 
 .card{
   width: 100%;
-  max-width: 450px;
-  height: 300px;
+  max-width: 400px;
+  border: solid 1px #cfcfcf;
+  padding: 30px;
 }
 .img-layout{
   height: 180px;
@@ -19,24 +20,50 @@
   width: 90%;
 }
 
+.icon{
+  width: 60px;
+  height: 60px;
+  border-radius: 200px;
+}
+
+.small-circle{
+  width: 8px;
+  height: 8px;
+  border-radius: 50px;
+}
+
+@media (max-width: 1450px) {
+  .card{
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
 </style>
 
 <template>
 
-  <div class="card shadow round-corner">
-    <div class="center-horizontal max-width img-layout">
-      <img :src="'../../src/assets/' + img + '.jpg'" class="max-width max-height product-img">
-    </div>
-    <div style="height: 20px"></div>
-    <div class="center-horizontal">
-      <div class="info-layout center-vertical space-between">
-        <h2 class="reset-margin">{{title}}</h2>
-        <h2 class="reset-margin prim-color">{{price}}</h2>
+  <div class="center-horizontal">
+    <div class="card round-corner">
+      <div class="icon decent-prim-background center">
+        <slot>
+
+        </slot>
       </div>
-    </div>
-    <div class="center-horizontal">
-      <div class="info-layout">
+      <div style="height: 20px"></div>
+      <div class="center-vertical space-between">
+        <h2 class="reset-margin">{{title}}</h2>
+      </div>
+      <div>
         <p class="decent-color">{{sub}}</p>
+      </div>
+      <div v-for="dat in list">
+        <div style="height: 10px"></div>
+        <div class="center-vertical">
+          <div class="small-circle prim-color-background"></div>
+          <div style="width: 10px"></div>
+          <p class="reset-margin decent-color">{{dat}}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -47,7 +74,7 @@
 <script>
 
 export default {
-  name: "ProductCard",
+  name: "LeistungCard",
   components: {},
   data() {
     return {
@@ -56,9 +83,8 @@ export default {
 
   props: {
     title: String,
-    img: String,
-    price: String,
-    sub: String
+    sub: String,
+    list: Array
   },
 
   created() {

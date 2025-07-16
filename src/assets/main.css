@@ -150,6 +150,10 @@ a{
     color: #ffffff;
 }
 
+.decent-white{
+    color: #c5c5c5;
+}
+
 .scroll{
     overflow-y: scroll;
 }
@@ -166,6 +170,10 @@ a{
 
 .main-content-width{
     width: 80%;
+}
+
+.leistung-content-width{
+    width: 95%;
 }
 
 .flex{
@@ -192,6 +200,11 @@ a{
     background: #2562e9;
 
 }
+
+.decent-prim-background{
+    background: #d9e8fc;
+}
+
 
 .gold{
     color: #e3ae00;
@@ -262,6 +275,7 @@ a{
     display: flex;
     align-items: center;
     justify-content: center;
+    background: transparent;
 }
 
 .input-error{
@@ -286,6 +300,10 @@ a{
 
 .contain{
     object-fit: contain;
+}
+
+.cover{
+    object-fit: cover;
 }
 
 .svg {

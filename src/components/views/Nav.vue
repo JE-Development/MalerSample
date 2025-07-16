@@ -31,7 +31,35 @@
   color: #2562e9;
 }
 
-@media (max-width: 600px) {
+.hide-nav{
+  display: flex;
+}
+
+.show-mobile{
+  display: none;
+}
+
+.mobile-nav{
+  height: 0;
+  width: 100%;
+  background: white;
+  overflow: hidden;
+  transition: height 0.5s ease;
+}
+
+.mobile-nav-height{
+  height: 140px;
+}
+
+.mobile-item{
+  width: 100%;
+}
+
+.nav-p{
+  height: 50px;
+}
+
+@media (max-width: 650px) {
   .nav-item{
     margin-left: 10px;
     text-decoration: none;
@@ -50,6 +78,16 @@
   }
 }
 
+@media (max-width: 500px) {
+  .hide-nav{
+    display: none;
+  }
+
+  .show-mobile{
+    display: flex;
+  }
+}
+
 </style>
 
 <template>
@@ -62,14 +100,33 @@
           <div style="width: 10px"></div>
           MalerPro
         </div>
-        <div class="center-vertical">
-          <a href="/#home" class="nav-item">Startseite</a>
-          <a href="/#menu" class="nav-item">Leistungen</a>
-          <a href="/#about" class="nav-item">Über uns</a>
-          <a href="/#contact" class="nav-item">Projekte</a>
-          <a href="/#contact" class="nav-item">Kontakt</a>
+        <div>
+          <div class="center-vertical hide-nav">
+            <a href="/#home" class="nav-item">Startseite</a>
+            <a href="/#menu" class="nav-item">Leistungen</a>
+            <a href="/#about" class="nav-item">Über uns</a>
+            <a href="/#projects" class="nav-item">Projekte</a>
+            <a href="/#contact" class="nav-item">Kontakt</a>
+          </div>
+          <div class="show-mobile">
+            <Icon size="30" class="decent-color pointer" @click="onMobileMenu">
+              <Menu2/>
+            </Icon>
+          </div>
         </div>
       </div>
+    </div>
+    <div class="mobile-nav" :class="showMobileMenu ? 'mobile-nav-height' : ''">
+      <p class="reset-margin max-width center-text"><a href="/#home" class="nav-item" @click="hideMobileNav">Startseite</a></p>
+      <div style="height: 10px"></div>
+      <p class="reset-margin max-width center-text"><a href="/#menu" class="nav-item" @click="hideMobileNav">Leistungen</a></p>
+      <div style="height: 10px"></div>
+      <p class="reset-margin max-width center-text"><a href="/#about" class="nav-item" @click="hideMobileNav">Über uns</a></p>
+      <div style="height: 10px"></div>
+      <p class="reset-margin max-width center-text"><a href="/#projects" class="nav-item" @click="hideMobileNav">Projekte</a></p>
+      <div style="height: 10px"></div>
+      <p class="reset-margin max-width center-text"><a href="/#contact" class="nav-item" @click="hideMobileNav">Kontakt</a></p>
+      <div style="height: 10px"></div>
     </div>
     <div class="gradient max-width"></div>
   </div>
@@ -79,11 +136,15 @@
 
 <script>
 
+import {Menu2} from "@vicons/tabler"
+import {Icon} from "@vicons/utils"
+
 export default {
   name: "Nav",
-  components: {},
+  components: {Icon, Menu2},
   data() {
     return {
+      showMobileMenu: false,
     };
   },
 
@@ -95,13 +156,17 @@ export default {
 
   mounted() {
 
-
   },
 
 
   methods: {
+    onMobileMenu() {
+      this.showMobileMenu = !this.showMobileMenu
+    },
 
-
+    hideMobileNav() {
+      this.showMobileMenu = false
+    }
   }
 }
 </script>

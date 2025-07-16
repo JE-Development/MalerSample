@@ -3,7 +3,7 @@
 .footer{
   padding-top: 30px;
   padding-bottom: 30px;
-  background: #1f2937;
+  background: black;
 }
 
 .footer-inner{
@@ -46,19 +46,19 @@
       <div class="center-horizontal">
         <div class="footer-inner center-horizontal" style="gap: 30px">
           <div class="flex-1">
-            <h3 class="white">Öffnungszeiten</h3>
-            <p class="decent-text">Montag - Donnerstag: 11:00 - 22:00</p>
-            <p class="decent-text">Freitag - Samstag: 11:00 - 23:00</p>
-            <p class="decent-text">Sonntag: 12:00 - 22:00</p>
+            <h3 class="white">Leistungen</h3>
+            <p class="decent-text">Innenraumgestaltung</p>
+            <p class="decent-text">Fassadenarbeiten</p>
+            <p class="decent-text">Spezialarbeiten</p>
+            <p class="decent-text">Beratung</p>
           </div>
           <div class="flex-1 center-horizontal">
             <div>
-              <h3 class="white">Service</h3>
-              <p class="decent-text">Lieferservice</p>
-              <p class="decent-text">Abholung</p>
-              <p class="decent-text">Tischreservierung</p>
-              <p class="decent-text">Catering</p>
-              <p class="decent-text">Private Feiern</p>
+              <h3 class="white">Kontakt</h3>
+              <p class="decent-text">+49 123 456 789</p>
+              <p class="decent-text">info@malerpro.de</p>
+              <p class="decent-text">Musterstraße 123</p>
+              <p class="decent-text">12345 Musterstadt</p>
             </div>
           </div>
           <div class="flex-1 right">
@@ -87,7 +87,7 @@
           <div class="max-width line"></div>
           <div style="height: 30px"></div>
           <div class="space-between">
-            <div><p class="decent-text reset-margin">© 2025 Bella Vista Pizzeria. | Powered by <a style="text-decoration: none" href="https://web.inforge.de">Inforge</a></p></div>
+            <div><p class="decent-text reset-margin">© 2025 MalerPro. | Powered by <a style="text-decoration: none" class="white" href="https://web.inforge.de">Inforge</a></p></div>
             <div class="flex">
               <p class="reset-margin"><a href="" class="decent-text">Impressum</a></p>
               <div style="width: 20px"></div>
